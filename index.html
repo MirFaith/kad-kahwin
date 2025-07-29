@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ms">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Majlis Perkahwinan Amirul & Aida</title>
+        <script>
+            let isOpened = false;
+            function openInvitation() {
+                if (isOpened) return;
+                isOpened = true;
+
+                const opening = document.getElementById("opening");
+                const main = document.getElementById("main");
+                const nav = document.getElementById("nav");
+
+                opening.classList.add("animate-fadeOut");
+
+                setTimeout(() => {
+                    opening.classList.add("hidden");
+                    main.classList.remove("hidden");
+                    main.classList.add("animate-fadeIn");
+                    nav.classList.remove("hidden");
+
+                    const audio = document.getElementById("audio");
+                    audio.volume = 0.1;
+                    audio.play();
+
+                    // 💐 Petal animation start only after opening is hidden
+                    const container = document.getElementById("petals-container");
+
+                    function createPetal() {
+                        const petal = document.createElement("div");
+                        petal.classList.add("petal");
+                        petal.style.left = Math.random() * 100 + "vw";
+                        petal.style.animationDuration = 5 + Math.random() * 5 + "s";
+                        container.appendChild(petal);
+
+                        setTimeout(() => {
+                            petal.remove();
+                        }, 10000);
+                    }
+
+                    // ✅ Mula selepas delay, bila container pasti wujud
+                    setInterval(createPetal, 3000);
+                }, 1000);
+            }
+        </script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Raleway:wght@400;600&display=swap');
+
+            body {
+                font-family: 'Raleway', sans-serif;
+                background-color: #fdfaf7;
+                color: #3e3e3e;
+                overflow: hidden;
+            }
+            h1, h2, h3, h4, h5 {
+                font-family: 'Playfair Display', serif;
+                color: #4b2e2e;
+            }
+            .button-luxe {
+                background: linear-gradient(to right, #b79974, #a0764f);
+                color: white;
+                padding: 0.75rem 2rem;
+                border-radius: 9999px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                transition: background 0.3s ease;
+            }
+            .button-luxe:hover {
+                background: linear-gradient(to right, #a0764f, #8c5c3d);
+            }
+
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            .animate-fadeOut {
+                animation: fadeOut 1s forwards;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 1s ease-in;
+            }
+
+            .petal {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                background-image: url('assets/images/flower-petals-2.webp');
+                background-size: contain;
+                background-repeat: no-repeat;
+                opacity: 0.8;
+                animation: fall 20s linear infinite;
+            }
+            @keyframes fall {
+                0% {
+                    transform: translateY(-10%) rotate(0deg);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: translateY(110vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            .vertical-stripe-left {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1.5rem;
+                height: 100%;
+                background-image: url('assets/images/style-1.webp');
+                background-repeat: repeat-y;
+                background-size: contain;
+                transform-origin: top left;
+            }
+            .vertical-stripe-right {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 1.5rem;
+                height: 100%;
+                background-image: url('assets/images/style-1.webp');
+                background-repeat: repeat-y;
+                background-size: contain;
+                z-index: 10;
+            }
+            @layer utilities {
+                .animate-fade-up {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: all 0.8s ease-out;
+                }
+
+                .animate-fade-up.in-view {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </head>
+    <body class="overflow-x-hidden">
+        <!-- Petal container -->
+        <div class="pointer-events-none fixed inset-0 z-10 overflow-hidden">
+            <div id="petals-container" class="absolute w-full h-full"></div>
+        </div>
+
+        <audio id="audio" src="assets/sound/song-1.mp3"></audio>
+
+        <!-- Opening Section -->
+        <section id="opening" class="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-[url('assets/images/bg-3.webp')] bg-cover bg-center transition-opacity duration-1000">
+            <button onclick="openInvitation()" class="z-10 button-luxe text-lg font-semibold">Buka Jemputan</button>
+        </section>
+
+        <!-- Main Sections -->
+        <div id="main" class="hidden">
+            <!-- Section 1: Tajuk Majlis -->
+            <section id="section1" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+                <!-- Left repeating stripe -->
+                <div class="vertical-stripe-left"></div>
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+                    <img src="assets/images/bismillah-1.webp" alt="Bismillahhirahmanirrahim" class="w-auto h-10 my-4" />
+                    <img src="assets/images/assalam-1.webp" alt="Assalamualaikum" class="w-auto h-10 my-4" />
+                    <img src="assets/images/logo.png" alt="Logo" class="mx-auto h-28 mb-2">
+                    <h3 class="text-3xl font-bold">Amirul | Aida</h3>
+                    <p class="mx-2 text-sm">Ahad | 07.09.2025<br>15 RabiulAwal 1447H</p>
+                    <blockquote class="italic text-gray-600 max-w-md">"Dan kami menciptakan kamu berpasang-pasangan"<br>Surah An Naba' (78:8)</blockquote>
+                </div>
+            </section>
+
+            <!-- Section 2: Undangan -->
+            <section id="section2" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+                    <img src="assets/images/assalam-1.webp" alt="Assalamualaikum" class="w-auto h-10 my-4" />
+                    <p class="mt-2 font-semibold">JANTAN BIN BUJANG<br>&<br>TUMINAH BINTI BUJANG</p>
+                    <p class="mt-4">Dengan penuh kesyukuran kami ingin mengundang</p>
+                    <p class="italic uppercase font-bold">Dato/Datin/Tuan/Puan/Encik/Cik<br>Serta seisi keluarga</p>
+                    <p class="mt-4 uppercase">ke majlis persandingan putera kami</p>
+                    <h3 class="text-xl font-bold mt-2">Mohamad Amirul Amri<br><span class="text-sm uppercase font-semibold">Bin Jantan</span></h3>
+                    <p class="mt-2">bersama pilihan hatinya</p>
+                    <h3 class="text-xl font-bold mt-2">Rohaida<br><span class="text-sm uppercase font-semibold">Binti Matsah</span></h3>
+                </div>
+            </section>
+
+            <!-- Section 3: Maklumat Majlis -->
+            <section id="section3" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+                <!-- Right repeating stripe -->
+                <div class="vertical-stripe-right"></div>
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+                    <h2 class="text-2xl font-bold">AHAD</h2>
+                    <p class="text-lg font-semibold">07.09.2025</p>
+                    <p class="text-lg">15 RABIULAWAL 1447H</p>
+                    <h3 class="mt-6 font-semibold">HUBUNGI</h3>
+                    <p class="uppercase">Tuminah (Ibu pengantin) - 012-7892912</p>
+                    <a href="https://wa.me/60127892912" target="_blank" class="z-50 bg-green-500 text-white rounded-full shadow-lg p-4 hover:bg-green-600">
+                        <!-- WhatsApp Icon (SVG) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                            <path
+                            d="M12.04 2C6.51 2 2 6.52 2 12.07c0 1.97.52 3.89 1.51 5.59L2 22l4.45-1.45c1.66.91 3.54 1.38 5.55 1.38 5.53 0 10.04-4.52 10.04-10.07S17.57 2 12.04 2zm.02 17.62c-1.64 0-3.22-.45-4.6-1.3l-.33-.2-2.64.85.86-2.57-.21-.34a8.12 8.12 0 01-1.27-4.36c0-4.47 3.64-8.1 8.1-8.1s8.1 3.63 8.1 8.1-3.64 8.1-8.1 8.1zm4.38-6.08c-.24-.12-1.42-.7-1.64-.78-.22-.09-.38-.12-.54.12s-.62.78-.76.94c-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.21-.72-.64-1.21-1.42-1.35-1.66s-.01-.37.1-.49c.1-.1.24-.26.36-.39.12-.13.16-.22.24-.36.08-.14.04-.27-.02-.39-.06-.12-.54-1.3-.74-1.79-.2-.48-.4-.42-.54-.42s-.3-.01-.46-.01c-.16 0-.42.06-.64.28-.22.22-.86.84-.86 2.05s.89 2.38 1.01 2.55c.12.16 1.75 2.67 4.25 3.74.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.42-.58 1.62-1.14.2-.56.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z" />
+                        </svg>
+                    </a>
+                    <h3 class="mt-6 font-semibold">LOKASI MAJLIS</h3>
+                    <p>NO.16 BLOK 1, FELDA SIMPANG WAHA,</p>
+                    <p>81900 KOTA TINGGI, JOHOR.</p>
+                    <img src="assets/images/map-qr-code.png" alt="QR Code" class="w-32 h-32 my-4" />
+                    <p class="mt-4 max-w-md italic text-gray-700">
+                        Mudah-mudahan dengan kehadiran para hadirin sekalian, majlis ini berlangsung dengan lancar serta diberkati dan dirahmati oleh Allah SWT.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 4: Doa -->
+            <section id="section4" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+                    <img src="assets/images/logo.png" alt="Logo" class="h-24 mb-4" />
+                    <img src="assets/images/bismillah-2.webp" alt="Bismillahhirahmanirrahim" class="w-auto h-10 my-4" />
+                    <p class="mb-4 text-gray-700 font-semibold">Ya Allah Ya Tuhan Kami,</p>
+                    <p class="mb-4 text-gray-700 font-semibold">Berkatilah majlis perkahwinan mereka, satukanlah hati kedua mempelai ini, dengan iman dan ketaqwaan kepadaMu.</p>
+                    <p class="mb-4 text-gray-700 font-semibold">Satukanlah hati kedua mempelai ini seperti mana Engkau satukan hati Adam & Hawa, Yusof & Zulaikha dan seperti Engkau satukan hati Muhammad S.A.W & Siti Khadijah. Semoga Allah S.A.W memberkati mereka serta menghimpunkan mereka kebaikan dan keberkatan didunia dan di akhirat.</p>
+                    <p class="mb-4 text-gray-700 font-semibold">Kami memohon doa restumu agar majlis perkahwinan ini berjalan dengan sempurna seperti mana yang Engkau kehendaki, dan semoga jodoh perkahwinan ini akan berkekalan buat selama-lamanya hingga ke akhir hayat.</p>
+                    <img src="assets/images/amin-1.webp" alt="Amin" class="w-auto h-10 my-4" />
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav id="nav" class="hidden fixed bottom-0 left-0 right-0 bg-[#f2e9e1] shadow-md flex justify-center gap-4 py-2 border-t border-[#d8c7b8]">
+            <a href="#section1" class="text-[#8c5c3d] font-semibold">Tajuk</a>
+            <a href="#section2" class="text-[#8c5c3d] font-semibold">Undangan</a>
+            <a href="#section3" class="text-[#8c5c3d] font-semibold">Maklumat</a>
+            <a href="#section4" class="text-[#8c5c3d] font-semibold">Doa</a>
+        </nav>
+    </body>
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target); // supaya animasi hanya berlaku sekali
+        }
+    });
+    }, {
+    threshold: 0.1,
+    });
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+    observer.observe(el);
+    });
+    </script>
+</html>
