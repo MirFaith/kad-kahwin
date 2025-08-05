@@ -5,6 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Majlis Kenduri Doa Selamat - Amirul & Aida</title>
         <script>
+            function setRealVh() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+
+            setRealVh();
+            window.addEventListener('resize', setRealVh);
+
             let isOpened = false;
             function openInvitation() {
                 if (isOpened) return;
@@ -76,7 +84,7 @@
                 background: linear-gradient(to right, #a0764f, #8c5c3d);
             }
             section {
-                height: 100vh;
+                height: calc(var(--vh, 1vh) * 100);
                 scroll-snap-align: start;
                 flex-shrink: 0;
             }
