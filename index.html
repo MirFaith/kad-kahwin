@@ -10,8 +10,9 @@
                 document.documentElement.style.setProperty('--vh', `${vh}px`);
             }
 
-            setRealVh();
-            window.addEventListener('resize', setRealVh);
+            setRealVh(); // Run immediately
+            window.addEventListener('resize', setRealVh); // Run on resize
+            window.addEventListener('load', setRealVh);   // Run when page fully loads
 
             let isOpened = false;
             function openInvitation() {
@@ -60,6 +61,7 @@
 
             html, body {
                 margin: 0;
+                padding: 0;
                 height: 100%;
             }
 
@@ -67,6 +69,8 @@
                 font-family: 'Raleway', sans-serif;
                 background-color: #fdfaf7;
                 color: #3e3e3e;
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-top: env(safe-area-inset-top);
             }
             h1, h2, h3, h4, h5 {
                 font-family: 'Playfair Display', serif;
