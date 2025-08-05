@@ -78,7 +78,7 @@
                 font-size: clamp(1.5rem, 5vw, 2.5rem);
             }
             p {
-                font-size: clamp(0.5rem, 2.5vw, 1.25rem);
+                font-size: clamp(1rem, 3.5vw, 1.25rem);
             }
             .button-luxe {
                 background: linear-gradient(to right, #b79974, #a0764f);
@@ -92,12 +92,16 @@
                 background: linear-gradient(to right, #a0764f, #8c5c3d);
             }
             section {
-                height: calc(var(--vh, 1vh) * 100);
+                height: calc(var(--vh, 3vh) * 100);
                 scroll-snap-align: start;
                 flex-shrink: 0;
             }
             .scroll-container {
                 overscroll-behavior-y: contain;
+            }
+            .section-content {
+                max-height: 100%;
+                overflow-y: auto;
             }
 
             @keyframes fadeOut {
@@ -223,9 +227,9 @@
                     <p class="mt-4">Dengan penuh kesyukuran kami ingin mengundang</p>
                     <p class="italic uppercase font-bold">Dato/Datin/Tuan/Puan/Encik/Cik<br>Serta seisi keluarga</p>
                     <p class="mt-4 uppercase">ke majlis kenduri doa selamat putera kami</p>
-                    <h3 class="text-lg font-bold mt-2">Mohamad Amirul Amri<br><span class="text-sm uppercase font-semibold">Bin Jantan</span></h3>
+                    <h3 class="text-xl font-bold mt-2">Mohamad Amirul Amri<br><span class="text-sm uppercase font-semibold">Bin Jantan</span></h3>
                     <p class="mt-2">bersama pilihan hatinya</p>
-                    <h3 class="text-lg font-bold mt-2">Rohaida<br><span class="text-sm uppercase font-semibold">Binti Matsah</span></h3>
+                    <h3 class="text-xl font-bold mt-2">Rohaida<br><span class="text-sm uppercase font-semibold">Binti Matsah</span></h3>
                 </div>
             </section>
 
