@@ -59,12 +59,14 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Raleway:wght@400;600&display=swap');
 
+            * {
+                box-sizing: border-box;
+            }
             html, body {
                 margin: 0;
                 padding: 0;
                 height: 100%;
             }
-
             body { 
                 font-family: 'Raleway', sans-serif;
                 background-color: #fdfaf7;
@@ -107,7 +109,6 @@
             .animate-fadeOut {
                 animation: fadeOut 1s forwards;
             }
-
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
@@ -115,7 +116,6 @@
             .animate-fadeIn {
                 animation: fadeIn 1s ease-in;
             }
-
             .petal {
                 position: absolute;
                 width: 30px;
@@ -164,7 +164,6 @@
                     transform: translateY(30px);
                     transition: all 0.8s ease-out;
                 }
-
                 .animate-fade-up.in-view {
                     opacity: 1;
                     transform: translateY(0);
@@ -175,14 +174,18 @@
                 transform: translateY(20px);
                 transition: all 0.8s ease;
             }
-
             .in-view {
                 opacity: 1;
                 transform: translateY(0);
             }
-
             .footer {
                 z-index: 11;
+            }
+            @media (max-width: 576px) {
+                .section-content {
+                    max-height: 100%;
+                    overflow-y: auto;
+                }
             }
         </style>
     </head>
