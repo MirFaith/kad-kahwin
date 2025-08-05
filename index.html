@@ -50,11 +50,15 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Raleway:wght@400;600&display=swap');
 
-            body {
+            html, body {
+                margin: 0;
+                height: 100%;
+            }
+
+            body { 
                 font-family: 'Raleway', sans-serif;
                 background-color: #fdfaf7;
                 color: #3e3e3e;
-                overflow: hidden;
             }
             h1, h2, h3, h4, h5 {
                 font-family: 'Playfair Display', serif;
@@ -70,6 +74,14 @@
             }
             .button-luxe:hover {
                 background: linear-gradient(to right, #a0764f, #8c5c3d);
+            }
+            section {
+                height: 100vh;
+                scroll-snap-align: start;
+                flex-shrink: 0;
+            }
+            .scroll-container {
+                overscroll-behavior-y: contain;
             }
 
             @keyframes fadeOut {
@@ -142,9 +154,23 @@
                     transform: translateY(0);
                 }
             }
+            .animate-fade-up {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.8s ease;
+            }
+
+            .in-view {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .footer {
+                z-index: 11;
+            }
         </style>
     </head>
-    <body class="overflow-x-hidden">
+    <body class="overflow-hidden m-0 p-0">
         <!-- Petal container -->
         <div class="pointer-events-none fixed inset-0 z-10 overflow-hidden">
             <div id="petals-container" class="absolute w-full h-full"></div>
@@ -158,12 +184,12 @@
         </section>
 
         <!-- Main Sections -->
-        <div id="main" class="hidden">
+        <div id="main" class="hidden scroll-container h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
             <!-- Section 1: Tajuk Majlis -->
-            <section id="section1" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+            <section id="section1" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
                 <!-- Left repeating stripe -->
                 <div class="vertical-stripe-left"></div>
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16 min-h-screen">
                     <img src="assets/images/bismillah-1.webp" alt="Bismillahhirahmanirrahim" class="w-auto h-10 my-4" />
                     <img src="assets/images/assalam-1.webp" alt="Assalamualaikum" class="w-auto h-10 my-4" />
                     <img src="assets/images/logo.png" alt="Logo" class="mx-auto h-28 mb-2">
@@ -174,8 +200,8 @@
             </section>
 
             <!-- Section 2: Undangan -->
-            <section id="section2" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+            <section id="section2" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16 min-h-screen">
                     <img src="assets/images/assalam-1.webp" alt="Assalamualaikum" class="w-auto h-10 my-4" />
                     <p class="mt-2 font-semibold">JANTAN BIN BUJANG<br>&<br>TUMINAH BINTI BUJANG</p>
                     <p class="mt-4">Dengan penuh kesyukuran kami ingin mengundang</p>
@@ -188,10 +214,10 @@
             </section>
 
             <!-- Section 3: Maklumat Majlis -->
-            <section id="section3" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+            <section id="section3" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
                 <!-- Right repeating stripe -->
                 <div class="vertical-stripe-right"></div>
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16 min-h-screen">
                     <h2 class="text-2xl font-bold">AHAD</h2>
                     <p class="text-lg font-semibold">07.09.2025</p>
                     <p class="text-lg">15 RABIULAWAL 1447H</p>
@@ -215,8 +241,8 @@
             </section>
 
             <!-- Section 4: Doa -->
-            <section id="section4" class="relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-10 min-h-screen">
+            <section id="section4" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 pt-4 pb-16 min-h-screen">
                     <img src="assets/images/logo.png" alt="Logo" class="h-24 mb-4" />
                     <img src="assets/images/bismillah-2.webp" alt="Bismillahhirahmanirrahim" class="w-auto h-10 my-4" />
                     <p class="mb-4 text-gray-700 font-semibold">Ya Allah Ya Tuhan Kami,</p>
@@ -229,7 +255,7 @@
         </div>
 
         <!-- Bottom Navigation -->
-        <nav id="nav" class="hidden fixed bottom-0 left-0 right-0 bg-[#f2e9e1] shadow-md flex justify-center gap-4 py-2 border-t border-[#d8c7b8]">
+        <nav id="nav" class="footer hidden fixed bottom-0 left-0 right-0 bg-[#f2e9e1] shadow-md flex justify-center gap-5 py-5 border-t border-[#d8c7b8]">
             <a href="#section1" class="text-[#8c5c3d] font-semibold">Tajuk</a>
             <a href="#section2" class="text-[#8c5c3d] font-semibold">Undangan</a>
             <a href="#section3" class="text-[#8c5c3d] font-semibold">Maklumat</a>
@@ -237,19 +263,76 @@
         </nav>
     </body>
     <script>
-    const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target); // supaya animasi hanya berlaku sekali
+    let isScrolling = false;
+
+    function handleScroll(e) {
+        if (isScrolling) return;
+
+        const delta = e.deltaY;
+        if (Math.abs(delta) < 30) return; // ignore small scrolls
+
+        const sections = [...document.querySelectorAll("section")];
+
+        // Get the section closest to center of the viewport
+        const currentSection = sections.reduce((closest, section) => {
+            const rect = section.getBoundingClientRect();
+            const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
+            if (!closest) return { section, distance };
+            return distance < closest.distance ? { section, distance } : closest;
+        }, null).section;
+
+        const currentIndex = sections.indexOf(currentSection);
+        let nextIndex = currentIndex;
+
+        if (delta > 0 && currentIndex < sections.length - 1) {
+            nextIndex++;
+        } else if (delta < 0 && currentIndex > 0) {
+            nextIndex--;
         }
-    });
-    }, {
-    threshold: 0.1,
+
+        if (nextIndex !== currentIndex) {
+            isScrolling = true;
+            sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+
+            // Set shorter lock duration for better responsiveness
+            setTimeout(() => {
+                isScrolling = false;
+            }, 700);
+        }
+
+        e.preventDefault();
+    }
+
+    document.addEventListener('wheel', handleScroll, { passive: false });
+
+    // Optional: Add touch/swipe support for mobile
+    let touchStartY = null;
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
     });
 
-    document.querySelectorAll('.animate-fade-up').forEach(el => {
-    observer.observe(el);
+    document.addEventListener('touchend', (e) => {
+        if (touchStartY === null) return;
+        const touchEndY = e.changedTouches[0].clientY;
+        const delta = touchStartY - touchEndY;
+        handleScroll({ deltaY: delta, preventDefault: () => {} });
+        touchStartY = null;
     });
-    </script>
+
+    // Optional: Fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+
 </html>
