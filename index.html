@@ -13,7 +13,9 @@
 
             setRealVh(); // Run immediately
             window.addEventListener('resize', setRealVh); // Run on resize
+            window.visualViewport?.addEventListener('resize', setRealVh);
             window.addEventListener('load', setRealVh);   // Run when page fully loads
+            window.addEventListener('scroll', setRealVh); // penting untuk scroll ke atas
 
             let isOpened = false;
             function openInvitation() {
@@ -96,6 +98,7 @@
                 flex-shrink: 0;
             }
             .scroll-container {
+                scroll-snap-type: y mandatory;
                 overscroll-behavior-y: contain;
             }
             .section-content {
@@ -218,7 +221,7 @@
             <section id="section1" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
                 <!-- Left repeating stripe -->
                 <div class="vertical-stripe-left"></div>
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16 min-h-screen">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16" style="min-height: calc(var(--vh, 1vh) * 100);">
                     <img src="assets/images/bismillah-1.webp" alt="Bismillahhirahmanirrahim" class="w-auto h-10 my-4" />
                     <img src="assets/images/assalam-1.webp" alt="Assalamualaikum" class="w-auto h-10 my-4" />
                     <img src="assets/images/logo.png" alt="Logo" class="mx-auto h-28 mb-2">
@@ -230,7 +233,7 @@
 
             <!-- Section 2: Undangan -->
             <section id="section2" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16 min-h-screen">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16" style="min-height: calc(var(--vh, 1vh) * 100);">
                     <img src="assets/images/assalam-1.webp" alt="Assalamualaikum" class="w-auto h-10 my-4" />
                     <p class="mt-2 font-semibold">JANTAN BIN BUJANG<br>&<br>TUMINAH BINTI BUJANG</p>
                     <p class="mt-4">Dengan penuh kesyukuran kami ingin mengundang</p>
@@ -246,7 +249,7 @@
             <section id="section3" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
                 <!-- Right repeating stripe -->
                 <div class="vertical-stripe-right"></div>
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16 min-h-screen">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 py-16" style="min-height: calc(var(--vh, 1vh) * 100);">
                     <h2 class="text-lg font-bold">AHAD</h2>
                     <p class="text-base font-semibold">07.09.2025</p>
                     <p class="text-base">15 RABIULAWAL 1447H</p>
@@ -271,7 +274,7 @@
 
             <!-- Section 4: Doa -->
             <section id="section4" class="h-screen snap-start relative min-h-screen bg-[url('assets/images/bg-2.png')] bg-cover">
-                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 pt-4 pb-16 min-h-screen">
+                <div class="section-content animate-fade-up flex flex-col justify-evenly items-center text-center px-8 pt-4 pb-16" style="min-height: calc(var(--vh, 1vh) * 100);">
                     <img src="assets/images/logo.png" alt="Logo" class="h-10 mb-4" />
                     <img src="assets/images/bismillah-2.webp" alt="Bismillahhirahmanirrahim" class="w-auto h-8 my-4" />
                     <p class="text-long mb-4 text-gray-700 font-semibold">Ya Allah Ya Tuhan Kami,</p>
